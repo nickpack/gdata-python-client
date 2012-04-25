@@ -51,10 +51,12 @@ class RatingFeed(gdata.data.GDFeed):
   """Describes ratings for a video"""
   entry = [RatingEntry]
 
+  
 class YouTubeMediaContent(gdata.media.data.MediaContent):
   """Describes a you tube media content"""
   _qname = gdata.media.data.MEDIA_TEMPLATE % 'content'
   format = 'format'
+
 
 class YtAge(atom.core.XmlElement):
   """User's age"""
