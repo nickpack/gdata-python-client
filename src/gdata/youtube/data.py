@@ -51,7 +51,7 @@ class RatingFeed(gdata.data.GDFeed):
   """Describes ratings for a video"""
   entry = [RatingEntry]
 
-  
+
 class YouTubeMediaContent(gdata.media.data.MediaContent):
   """Describes a you tube media content"""
   _qname = gdata.media.data.MEDIA_TEMPLATE % 'content'
@@ -162,6 +162,8 @@ class YtRacy(atom.core.XmlElement):
 class YtRating(atom.core.XmlElement):
     """ Video Likes/Dislikes """
     _qname = YT_TEMPLATE % 'rating'
+    num_likes = 'numLikes'
+    num_dislikes = 'numDislikes'
 
 
 class YtRecorded(atom.core.XmlElement):

@@ -206,6 +206,22 @@ class Comments(atom.AtomBase):
     atom.AtomBase.__init__(self, extension_elements=extension_elements,
                            extension_attributes=extension_attributes, text=text)
 
+class LikeDislike(atom.AtomBase):
+    """ The YT Rating element """
+    _tag = 'rating'
+    _namespace = YOUTUBE_NAMESPACE
+    _attributes = atom.AtomBase._attributes.copy()
+    _attributes['numDislikes'] = 'num_dislikes'
+    _attributes['numLikes'] = 'num_likes'
+
+    def __init__(self, num_dislikes=None, num_likes=None, extension_elements=None,
+                 extension_attributes=None, text=None):
+
+        self.num_dislikes = num_dislikes
+        self.num_likes = num_likes
+
+        atom.AtomBase.__init__(self, extension_elements=extension_elements,
+            extension_attributes=extension_attributes, text=text)
 
 class Rating(atom.AtomBase):
   """The GData Rating element"""
@@ -379,16 +395,18 @@ class YouTubeVideoEntry(gdata.GDataEntry):
   _children['{%s}statistics' % YOUTUBE_NAMESPACE] = ('statistics', Statistics)
   _children['{%s}recorded' % YOUTUBE_NAMESPACE] = ('recorded', Recorded)
   _children['{%s}racy' % YOUTUBE_NAMESPACE] = ('racy', Racy)
+  _children['{%s}rating' % YOUTUBE_NAMESPACE] = ('likedislike', LikeDislike)
   _children['{%s}group' % gdata.media.MEDIA_NAMESPACE] = ('media', Media.Group)
   _children['{%s}where' % gdata.geo.GEORSS_NAMESPACE] = ('geo', Geo.Where)
 
   def __init__(self, author=None, category=None, content=None, atom_id=None,
                link=None, published=None, title=None, updated=None, rating=None,
-               noembed=None, statistics=None, racy=None, media=None, geo=None,
+               noembed=None, statistics=None, racy=None, likedislike=None, media=None, geo=None,
                recorded=None, comments=None, extension_elements=None, 
                extension_attributes=None):
 
     self.rating = rating
+    self.likedislike = likedislike
     self.noembed = noembed
     self.statistics = statistics
     self.racy = racy
