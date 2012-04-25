@@ -1,0 +1,9 @@
+*.pyc
+build/*
+dist/*
+.*.swp
+.project
+.pydevproject
+MANIFEST
+*.iml
+.idea/*
