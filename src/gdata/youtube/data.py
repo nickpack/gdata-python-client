@@ -51,12 +51,10 @@ class RatingFeed(gdata.data.GDFeed):
   """Describes ratings for a video"""
   entry = [RatingEntry]
 
-
 class YouTubeMediaContent(gdata.media.data.MediaContent):
   """Describes a you tube media content"""
   _qname = gdata.media.data.MEDIA_TEMPLATE % 'content'
   format = 'format'
-
 
 class YtAge(atom.core.XmlElement):
   """User's age"""
@@ -157,6 +155,11 @@ class YtQueryString(atom.core.XmlElement):
 class YtRacy(atom.core.XmlElement):
   """Mature content"""
   _qname = YT_TEMPLATE % 'racy'
+
+
+class YtRating(atom.core.XmlElement):
+    """ Video Likes/Dislikes """
+    _qname = YT_TEMPLATE % 'rating'
 
 
 class YtRecorded(atom.core.XmlElement):
@@ -412,6 +415,7 @@ class VideoEntryBase(gdata.data.GDEntry):
   recorded = YtRecorded
   where = gdata.geo.data.GeoRssWhere
   rating = gdata.data.Rating
+  likedislike = YtRating
   noembed = YtNoEmbed
   location = YtLocation
   comments = gdata.data.Comments
